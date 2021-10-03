@@ -4,7 +4,7 @@ import com.papeliyodev.movieapp.application.AppConstants
 import com.papeliyodev.movieapp.data.model.MovieList
 import com.papeliyodev.movieapp.repository.WebService
 
-class MovieDataSource(private val webService: WebService) {
+class RemoteMovieDataSource(private val webService: WebService) {
 
     suspend fun getUpComingMovies(): MovieList = webService.getUpComingMovies(AppConstants.API_KEY)
 

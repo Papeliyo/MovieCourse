@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.ConcatAdapter
 import com.papeliyodev.movieapp.R
 import com.papeliyodev.movieapp.core.Resource
 import com.papeliyodev.movieapp.data.model.Movie
-import com.papeliyodev.movieapp.data.remote.MovieDataSource
+import com.papeliyodev.movieapp.data.remote.RemoteMovieDataSource
 import com.papeliyodev.movieapp.databinding.FragmentMovieBinding
 import com.papeliyodev.movieapp.presentation.MovieViewModel
 import com.papeliyodev.movieapp.presentation.MovieViewModelFactory
@@ -28,7 +28,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
     private val viewModel by viewModels<MovieViewModel> {
         MovieViewModelFactory(
             MovieRepositoryImpl(
-                MovieDataSource(RetrofitClient.webservice)
+                RemoteMovieDataSource(RetrofitClient.webservice)
             )
         )
     }
