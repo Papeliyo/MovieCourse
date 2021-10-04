@@ -10,6 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import com.papeliyodev.movieapp.R
 import com.papeliyodev.movieapp.core.Resource
+import com.papeliyodev.movieapp.data.local.AppDataBase
+import com.papeliyodev.movieapp.data.local.LocalMovieDataSource
 import com.papeliyodev.movieapp.data.model.Movie
 import com.papeliyodev.movieapp.data.remote.RemoteMovieDataSource
 import com.papeliyodev.movieapp.databinding.FragmentMovieBinding
@@ -28,7 +30,8 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
     private val viewModel by viewModels<MovieViewModel> {
         MovieViewModelFactory(
             MovieRepositoryImpl(
-                RemoteMovieDataSource(RetrofitClient.webservice)
+                RemoteMovieDataSource(RetrofitClient.webservice),
+                LocalMovieDataSource(AppDataBase.getDatabase(requireContext()).movieDao())
             )
         )
     }
